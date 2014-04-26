@@ -6,13 +6,18 @@
 
 makeCacheMatrix <- function(x = matrix()) {
         mInv <- NULL
+        # assigns matrix value
 	set <- function(z=matrix()) {
                 x <<- z
                 mInv <<- NULL
         }
+        # fetches matrix
 	get <- function() x
+	# sets Inverse of matrix to matrixInverse passed
         setInv <- function(Inverse) mInv <<- Inverse
+        # gets Inverse of matrix if available,else returns NULL
         getInv <- function() mInv
+        # function return list type
         list(set = set, get = get,
              setInv = setInv ,
              getInv = getInv )
@@ -34,6 +39,7 @@ cacheSolve <- function(x, ...) {
                 return(mInv)
         }
         data <- x$get()
+        # calculates matrix Inverse
         mInv <- solve(data, ...)
         x$setInv(mInv)
         mInv
